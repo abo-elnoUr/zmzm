@@ -1,0 +1,44 @@
+.container-fluid-mine {
+    min-height: 100vh !important;
+    background: url(./../../../../assets/images/login.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.login-content {
+    width: 100%;
+    border-radius: 8px;
+    // background: #2f3242;
+    background: #333;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.card-body {
+    width: 100%;
+}
+
+.logo {
+    width: 128px;
+    height: 128px;
+    margin: 5px;
+}
+
+.text-logo {
+    text-align: center;
+    font-weight: bold;
+    font-size: 32px;
+    color: white;
+}
+
+@media only screen and (max-width: 600px) {
+    .login-content {
+        min-width: 100%;
+        padding: 0 20px;
+    }
+}

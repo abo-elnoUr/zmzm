@@ -1,0 +1,203 @@
+<app-navbar></app-navbar>
+
+<div class="container-fluid container-fluid-mine">
+
+    <h3 class="text-center py-3">{{'customers' | translate}}</h3>
+    <div class="text-center my-4 w-100">
+        <button class="btn btn-outline-primary mx-auto" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <i class="fas fa-user-plus me-2"></i>{{'add customer' | translate}}
+    </button>
+    </div>
+    <div class="input-group mx-auto my-4 w-25">
+        <input type="search" class="form-control text-end" placeholder=" {{'search' | translate}}" [(ngModel)]="search" />
+    </div>
+    <div class="table-responsive-xxl pb-4">
+        <table class="table table-hover m-auto center text-end w-100">
+            <thead>
+                <tr>
+                    <th class="text-center">{{'opreations' | translate}}</th>
+                    <th>{{'date' | translate}}</th>
+                    <th>{{'notes' | translate}}</th>
+                    <th>{{'line' | translate}}</th>
+                    <th>{{'address' | translate}}</th>
+                    <th>{{'maintenence month' | translate}}</th>
+                    <th>{{'price' | translate}}</th>
+                    <th>{{'number of steps' | translate}}</th>
+                    <th>{{'device type' | translate}}</th>
+                    <th>{{'number of device' | translate}}</th>
+                    <th>{{'mobile' | translate}}</th>
+                    <th>{{'name' | translate}}</th>
+                    <th>{{'customer code' | translate}}</th>
+                    <th>#</th>
+                </tr>
+            </thead>
+            <tbody style="cursor: pointer">
+                <tr *ngFor="let c of customers | LockFilter: search; let i = index">
+                    <td class="text-center">
+                        <button class="btn btn-outline-danger me-1 mb-1" (click)="deleteCustomer(c.id)">
+              <i class="far fa-trash-alt me-2"></i>{{'delete' | translate}}
+            </button>
+                        <button class="btn btn-outline-info me-1 mb-1" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getCustomerById(c.id)">
+              <i class="fas fa-pen-square me-2"></i>{{'update' | translate}}
+            </button>
+                    </td>
+
+                    <td (click)="getCustomerId(c.id)">{{ c.date }}</td>
+                    <td (click)="getCustomerId(c.id)">{{ c.notes }}</td>
+                    <td (click)="getCustomerId(c.id)">{{ c.line }}</td>
+                    <td (click)="getCustomerId(c.id)">{{ c.address }}</td>
+                    <td (click)="getCustomerId(c.id)">{{ c.maintenence_months }}</td>
+                    <td (click)="getCustomerId(c.id)">{{ c.price }}</td>
+                    <td (click)="getCustomerId(c.id)">{{ c.number_of_steps }}</td>
+                    <td (click)="getCustomerId(c.id)">{{ c.device_type }}</td>
+                    <td (click)="getCustomerId(c.id)">{{ c.number_of_device }}</td>
+                    <td (click)="getCustomerId(c.id)">{{ c.mobile }}</td>
+                    <td (click)="getCustomerId(c.id)">{{ c.name }}</td>
+                    <td (click)="getCustomerId(c.id)">{{ c.customer_code }}</td>
+                    <th scope="row">{{ i + 1 }}</th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable text-end">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{ 'add new customer' | translate}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="customerForm" novalidate>
+                    <div class="text-end form-group">
+                        <label class="my-2">{{'customer code' | translate}}</label>
+                        <input type="text" class="form-control text-end" name="customer_code" placeholder="{{'customer code' | translate}}" formControlName="customer_code" autocomplete="off" />
+                        <div *ngIf="
+                listFormValidate.customer_code.invalid &&
+                (listFormValidate.customer_code.dirty ||
+                  listFormValidate.customer_code.touched)">
+                            <small *ngIf="listFormValidate.customer_code.errors?.required">كود العميل مطلوب</small>
+                        </div>
+                        <label class="my-2">{{'name' | translate}}</label>
+                        <input type="text" class="form-control text-end" name="name" placeholder="{{'name' | translate}}" formControlName="name" autocomplete="off" />
+                        <div *ngIf="
+                listFormValidate.name.invalid &&
+                (listFormValidate.name.dirty ||
+                  listFormValidate.name.touched)">
+                            <small *ngIf="listFormValidate.name.errors?.required"> الاسم مطلوب</small>
+                        </div>
+                        <label class="my-2">{{'mobile' | translate}} </label>
+                        <input type="text" class="form-control text-end" name="mobile" placeholder=" {{'mobile' | translate}} " formControlName="mobile" autocomplete="off" />
+                        <div *ngIf="
+                listFormValidate.mobile.invalid &&
+                (listFormValidate.mobile.dirty ||
+                  listFormValidate.mobile.touched)">
+                            <small *ngIf="listFormValidate.mobile.errors?.required"> الموبايل مطلوب</small>
+                        </div>
+                        <label class="my-2">{{'number of device' | translate}}</label>
+                        <input type="number" class="form-control text-end" name="number_of_device" placeholder="{{'number of device' | translate}}" formControlName="number_of_device" autocomplete="off" />
+                        <div *ngIf="
+                listFormValidate.number_of_device.invalid &&
+                (listFormValidate.number_of_device.dirty ||
+                  listFormValidate.number_of_device.touched)">
+                            <small *ngIf="listFormValidate.number_of_device.errors?.required">عدد الاجهزه مطلوبه</small>
+                        </div>
+                        <label class="my-2">{{'device type' | translate}}</label>
+                        <input type="text" class="form-control text-end" name="device_type" placeholder="{{'device type' | translate}}" formControlName="device_type" autocomplete="off" />
+                        <div *ngIf="
+                listFormValidate.device_type.invalid &&
+                (listFormValidate.device_type.dirty ||
+                  listFormValidate.device_type.touched)">
+                            <small *ngIf="listFormValidate.device_type.errors?.required">نوع الاجهزه مطلوبه</small>
+                        </div>
+                        <label class="my-2">{{'number of steps' | translate}}</label>
+                        <input type="number" class="form-control text-end" name="number_of_steps" placeholder="{{'number of steps' | translate}}" formControlName="number_of_steps" autocomplete="off" />
+                        <div *ngIf="
+                listFormValidate.number_of_steps.invalid &&
+                (listFormValidate.number_of_steps.dirty ||
+                  listFormValidate.number_of_steps.touched)">
+                            <small *ngIf="listFormValidate.number_of_steps.errors?.required">عدد المراحل مطلوبه</small>
+                        </div>
+                        <label class="my-2">{{'price' | translate}}</label>
+                        <input type="number" class="form-control text-end" name="price" placeholder="{{'price' | translate}}" formControlName="price" autocomplete="off" />
+                        <div *ngIf="
+                listFormValidate.price.invalid &&
+                (listFormValidate.price.dirty ||
+                  listFormValidate.price.touched)">
+                            <small *ngIf="listFormValidate.price.errors?.required">السعر مطلوب</small>
+                        </div>
+                        <label class="my-2">{{'maintenence month' | translate}}</label>
+                        <!-- <input type="number" class="form-control text-end" name="maintenence_months" placeholder=" ...عدد شهور الصيانه" formControlName="maintenence_months" autocomplete="off" /> -->
+                        <select formControlName="maintenence_months" class="form-select" aria-label="Default select example">
+                          <option  Value="1">1</option>
+                          <option  Value="2">2</option>
+                          <option  Value="3">3</option>
+                          <option  Value="4">4</option>
+                          <option  Value="5">5</option>
+                          <option  Value="6">6</option>
+                          <option  Value="7">7</option>
+                          <option  Value="8">8</option>
+                          <option  Value="9">9</option>
+                          <option  Value="10">10</option>
+                          <option  Value="11">11</option>
+                          <option  Value="12">12</option>
+                        </select>
+                        <div *ngIf="
+                listFormValidate.maintenence_months.invalid &&
+                (listFormValidate.maintenence_months.dirty ||
+                  listFormValidate.maintenence_months.touched)">
+                            <small *ngIf="listFormValidate.maintenence_months.errors?.required">عدد شهور الصيانه مطلوبه</small>
+                        </div>
+                        <label class="my-2">{{'address' | translate}}</label>
+                        <input type="text" class="form-control text-end" name="address" placeholder="{{'address' | translate}}" formControlName="address" autocomplete="off" />
+                        <div *ngIf="
+                listFormValidate.address.invalid &&
+                (listFormValidate.address.dirty ||
+                  listFormValidate.address.touched)">
+                            <small *ngIf="listFormValidate.address.errors?.required">العنوان مطلوب</small>
+                        </div>
+                        <label class="my-2">{{'line' | translate}}</label>
+                        <input type="text" class="form-control text-end" name="line" placeholder="{{'line' | translate}}" formControlName="line" autocomplete="off" />
+                        <div *ngIf="
+                listFormValidate.line.invalid &&
+                (listFormValidate.line.dirty ||
+                  listFormValidate.line.touched)">
+                            <small *ngIf="listFormValidate.line.errors?.required">الخط مطلوب</small>
+                        </div>
+                        <label class="my-2">{{'notes' | translate}}</label>
+                        <input type="text" class="form-control text-end" name="notes" placeholder="{{'notes' | translate}}" formControlName="notes" autocomplete="off" />
+                        <div *ngIf="
+                listFormValidate.notes.invalid &&
+                (listFormValidate.notes.dirty ||
+                  listFormValidate.notes.touched)">
+                            <small *ngIf="listFormValidate.notes.errors?.required">الملاحظات مطلوبه</small>
+                        </div>
+                        <label class="my-2">{{'date' | translate}}</label>
+                        <input type="date" class="form-control text-end" name="date" placeholder="{{'date' | translate}}" formControlName="date" autocomplete="off" />
+                        <div *ngIf="
+                listFormValidate.date.invalid &&
+                (listFormValidate.date.dirty ||
+                  listFormValidate.date.touched)">
+                            <small *ngIf="listFormValidate.date.errors?.required">التاريخ مطلوب</small>
+                        </div>
+                    </div>
+                    <div class="submit text-center">
+                        <button type="submit" class="btn btn-outline-info my-4 me-2" [disabled]="customerForm.invalid || editMode == false" (click)="onUpdateCustomer()">
+              <i class="far fa-edit me-2"></i>{{'update' | translate}}
+            </button>
+                        <button type="submit" class="btn btn-outline-primary my-4" [disabled]="customerForm.invalid || editMode == true" (click)="addCustomer()">
+              <i class="fas fa-plus-circle me-2"></i>{{'add' | translate}}
+            </button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,108 @@
+.sidenav {
+    height: 100%;
+    // width: 0;
+    // position: fixed;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    background-color: rgb(252, 230, 230);
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
+}
+
+.sidenav a {
+    padding: 8px 32px 8px 8px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a.active {
+    color: #000;
+}
+
+.sidenav a:hover {
+    color: #000;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+    .sidenav a {
+        font-size: 18px;
+    }
+}
+
+//
+nav {
+    background-color: rgb(252, 230, 230);
+    height: 100vh;
+    width: 300px;
+    position: fixed;
+    transform: translateX(600px);
+    transition: transform 0.4s ease-in-out;
+    z-index: 2;
+    top: 0;
+    right: 300px;
+    cursor: pointer;
+}
+
+nav:after {
+    content: "⚙";
+    background: rgb(252, 230, 230);
+    height: 80px;
+    width: 80px;
+    position: absolute;
+    left: -40px;
+    top: 40px;
+    border-radius: 50%;
+    text-align: center;
+    z-index: 1;
+    font-size: 50px;
+}
+
+nav:hover {
+    transform: translateX(300px);
+}
+
+.login {
+    position: absolute;
+    bottom: 0;
+}
+
+.login button {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+// language switch
+.chooseLang {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.chooseLang button:nth-child(2) {
+    margin: 5px;
+    border: none;
+    outline: none;
+    background: url(./../../../../assets/images/ar.png) no-repeat center center;
+    background-size: cover;
+    height: 35px;
+    width: 35px;
+}
+
+.chooseLang button:nth-child(1) {
+    margin: 5px;
+    border: none;
+    outline: none;
+    background: url(./../../../../assets/images/en.png) no-repeat center center;
+    background-size: cover;
+    height: 35px;
+    width: 35px;
+}

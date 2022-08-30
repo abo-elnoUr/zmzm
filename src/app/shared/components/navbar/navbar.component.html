@@ -1,0 +1,29 @@
+<nav>
+    <div id="side-navbar" class="sidenav text-end">
+        <div class="chooseLang">
+            <button (click)="changeCurrentLanguage('en')"></button>
+            <button (click)="changeCurrentLanguage('ar')"></button>
+        </div>
+        <a routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" routerLink="/">{{'home' | translate}}
+            <img src='./../../../../assets/images/home.png' class="img-fluid" style="width: 30px">
+        </a>
+        <a routerLinkActive="active" routerLink="/customers">{{'customers' | translate}}
+          <img src='./../../../../assets/images/customers.png' class="img-fluid" style="width: 30px">
+        </a>
+        <a routerLinkActive="active" routerLink="/daily_maintenence">{{'daily maintenence' | translate}}
+          <img src='./../../../../assets/images/maintenence.png' class="img-fluid" style="width: 30px">
+        </a>
+        <a routerLinkActive="active" routerLink="/employees">{{'employees' | translate}}
+
+          <img src='./../../../../assets/images/employee.png' class="img-fluid" style="width: 30px"></a>
+        <div class="login text-center w-100">
+            <button type="button" *ngIf="logoutbtn" class="btn btn-outline-danger border-0" (click)="logout()">
+  <i class="fas fa-sign-out-alt me-2"></i>{{'log out' | translate}}
+  </button>
+            <button *ngIf="loginbtn" routerLink="/login" class="btn btn-outline-dark border-0">
+                <i class="fas fa-sign-in-alt me-2"></i>{{'login' | translate}}
+            </button>
+        </div>
+    </div>
+
+</nav>

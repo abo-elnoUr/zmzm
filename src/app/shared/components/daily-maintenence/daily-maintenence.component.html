@@ -1,0 +1,50 @@
+<app-navbar></app-navbar>
+<div class="container-fluid text-end container-mine">
+    <h3 class="text-center py-4">{{'daily maintenence' | translate}}</h3>
+    <div class="table-responsive-xxl py-4">
+        <table class="table table-hover m-auto center text-end w-100">
+            <thead>
+                <tr>
+                    <th>{{'opreations' | translate}}</th>
+                    <th>{{'date' | translate}}</th>
+                    <th>{{'notes' | translate}}</th>
+                    <th>{{'line' | translate}}</th>
+                    <th>{{'address' | translate}}</th>
+                    <th>{{'maintenence month' | translate}}</th>
+                    <th>{{'price' | translate}}</th>
+                    <th>{{'number of steps' | translate}}</th>
+                    <th>{{'device type' | translate}}</th>
+                    <th>{{'number of device' | translate}}</th>
+                    <th>{{'mobile' | translate}}</th>
+                    <th>{{'name' | translate}}</th>
+                    <th>{{'customer code' | translate}}</th>
+                    <th>#</th>
+                </tr>
+            </thead>
+            <tbody style="cursor: pointer">
+                <tr *ngFor="let m of maintenence ; let i = index">
+                    <td class="text-center">
+                        <button class="btn btn-outline-dark me-1 mb-1" (click)="onDeleteDailyMaintenence(m.id, m.id_key)">
+                      <i class="far fa-check-circle me-2"></i>{{ 'visited' | translate }}
+                </button>
+
+                    </td>
+
+                    <td>{{ m.date }}</td>
+                    <td>{{ m.notes }}</td>
+                    <td>{{ m.line }}</td>
+                    <td>{{ m.address }}</td>
+                    <td>{{ m.maintenence_months }}</td>
+                    <td>{{ m.price }}</td>
+                    <td>{{ m.number_of_steps }}</td>
+                    <td>{{ m.device_type }}</td>
+                    <td>{{ m.number_of_device }}</td>
+                    <td>{{ m.mobile }}</td>
+                    <td>{{ m.name }}</td>
+                    <td>{{ m.customer_code }}</td>
+                    <th scope="row">{{ i + 1 }}</th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

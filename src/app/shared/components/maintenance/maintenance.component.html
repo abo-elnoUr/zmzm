@@ -1,0 +1,131 @@
+<app-navbar></app-navbar>
+
+
+<div class="container-fluid container-fluid-mine">
+    <h3 class="text-center py-3">{{'customer data' | translate}}</h3>
+    <div class="table-responsive-xxl  pb-4">
+        <table class="
+      table
+      m-auto
+      center
+      text-end
+      w-100
+    ">
+            <thead>
+                <tr>
+                    <th>{{'date' | translate}}</th>
+                    <th>{{'notes' | translate}}</th>
+                    <th>{{'line' | translate}}</th>
+                    <th>{{'address' | translate}}</th>
+                    <th>{{'maintenence month' | translate}}</th>
+                    <th>{{'price' | translate}}</th>
+                    <th>{{'number of steps' | translate}}</th>
+                    <th>{{'device type' | translate}}</th>
+                    <th>{{'number of device' | translate}}</th>
+                    <th>{{'mobile' | translate}}</th>
+                    <th>{{'name' | translate}}</th>
+                    <th>{{'customer code' | translate}}</th>
+                    <th>#</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let c of customerById;let i = index">
+                    <td>{{c.date}}</td>
+                    <td>{{c.notes}}</td>
+                    <td>{{c.line}}</td>
+                    <td>{{c.address}}</td>
+                    <td>{{c.maintenence_months}}</td>
+                    <td>{{c.price}}</td>
+                    <td>{{c.number_of_steps}}</td>
+                    <td>{{c.device_type}}</td>
+                    <td>{{c.number_of_device}}</td>
+                    <td>{{c.mobile}}</td>
+                    <td>{{c.name}}</td>
+                    <td>{{c.customer_code}}</td>
+                    <th scope="row">{{ i+1 }}</th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center my-4 w-100">
+        <button class="btn btn-outline-primary mx-auto" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-cogs me-2"></i> {{'add maintenence' | translate}}</button>
+    </div>
+
+    <div class="mx-auto my-4">
+        <h3 class="text-center">{{'maintenence' | translate}}</h3>
+    </div>
+    <div class="table-responsive-xxl  pb-4">
+        <table class="
+    table
+    m-auto
+    center
+    text-end
+    w-100
+  ">
+            <thead>
+                <tr>
+                    <th>{{'opreations' | translate}}</th>
+                    <th>{{'maintenence date' | translate}}</th>
+                    <th>{{'price' | translate}}</th>
+                    <th>{{'maintenence type' | translate}}</th>
+                    <th>{{'technician name' | translate}}</th>
+                    <th>#</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let c of customerMaintenence;let i = index">
+                    <td>
+                        <button class="btn btn-outline-danger me-1 mb-1" (click)="deleteMaintenence(c.id)">
+                        <i class="far fa-trash-alt me-2"></i>{{'delete' | translate}}
+                      </button><button class="btn btn-outline-info me-1 mb-1" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getMaintenenceById(c.id_key)">
+                      <i class="fas fa-pen-square me-2"></i>{{'update' | translate}}
+                    </button></td>
+                    <td>{{c.date}}</td>
+                    <td>{{c.price}}</td>
+                    <td>{{c.maintenence_type}}</td>
+                    <td>{{c.technician_name}}</td>
+                    <th scope="row">{{ i+1 }}</th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered text-end">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{'add maintenence to customer' | translate}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="maintenanceForm" novalidate>
+                    <div class="text-end form-group">
+                        <label class=" my-2">{{'technician name' | translate}}</label>
+                        <input type="text " class="form-control text-end" name="technician_name" placeholder="{{'technician name' | translate}}" formControlName="technician_name" autocomplete="off" />
+                        <label class=" my-2">{{'maintenence type' | translate}}</label>
+                        <input type="text " class="form-control text-end" name="maintenence_type" placeholder="{{'maintenence type' | translate}}" formControlName="maintenence_type" autocomplete="off" />
+                        <label class=" my-2">{{'price' | translate}}</label>
+                        <input type="number" class="form-control text-end" name="price" placeholder="{{'price' | translate}}" formControlName="price" autocomplete="off" />
+                        <label class=" my-2">{{'maintenence date' | translate}}</label>
+                        <input type="date" class="form-control text-end" name="date" placeholder="{{'maintenence date' | translate}}" formControlName="date" autocomplete="off" />
+
+                    </div>
+                    <div class="submit text-center">
+                        <button type="submit" class="btn btn-outline-info my-4 me-2" [disabled]="maintenanceForm.invalid || editMode == false" (click)="onUpdateMaintenence()">
+                    <i class="far fa-edit me-2"></i>{{'update' | translate}}
+                  </button>
+                        <button type="submit" class="btn btn-outline-primary my-4" [disabled]="maintenanceForm.invalid || editMode == true" (click)="addMiantenence()">
+              <i class="fas fa-plus-circle me-2"></i>{{'add' | translate}}
+            </button>
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

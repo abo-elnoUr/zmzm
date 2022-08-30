@@ -1,0 +1,78 @@
+<app-navbar></app-navbar>
+<!-- <div class="container-fluid container-fluid-mine">
+    <h3 class="text-center  py-3">تسجيل الدخول</h3>
+    <div class="d-flex justify-content-evenly align-items-center">
+        <form [formGroup]="formLogin" autocomplete="off" novalidate autocomplete="off" class="w-50 text-end">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingInput" formControlName="username" placeholder="name@example.com">
+                <label for="floatingInput">User Name</label>
+                <div *ngIf="
+            formLoginValidate.username.invalid &&
+            (formLoginValidate.username.dirty ||
+              formLoginValidate.username.touched)
+          ">
+                    <small class="" *ngIf="formLoginValidate.username.errors?.required">هذا الحقل مطلوب</small>
+                    <small class="" *ngIf="formLoginValidate.username.errors?.minlength">لا يجب ان يقل هذا الحقل عن 3 حروف</small>
+                </div>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" formControlName="password" placeholder="Password">
+                <label for="floatingPassword">Password</label>
+                <div *ngIf="
+            formLoginValidate.password.invalid &&
+            (formLoginValidate.password.dirty ||
+              formLoginValidate.password.touched)
+          ">
+                    <small class="" *ngIf="formLoginValidate.password.errors?.required">هذا الحقل مطلوب</small>
+                    <small class="" *ngIf="formLoginValidate.password.errors?.minlength">لا يجب ان يقل هذا الحقل عن 3 حروف</small>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-outline-success my-4" [disabled]="formLogin.invalid" (click)="login()"><i
+        class="fas fa-sign-in-alt me-2"></i>تسجيل الدخول</button>
+        </form>
+    </div>
+</div> -->
+
+
+<!-- *************************************** -->
+
+
+<div class="container-fluid container-fluid-mine">
+    <div class="card login-content w-50 d-flex justify-content-evenly align-items-center">
+        <div class="card-body">
+            <div class="text-center">
+                <img class="logo" src="./../../../../assets/images/logo.png">
+            </div>
+            <h3 class="text-logo">تسجيل الدخول</h3>
+            <br>
+            <form [formGroup]="formLogin" autocomplete="off" novalidate autocomplete="off" class="text-end">
+                <div class="form-floating text-end mb-3">
+                    <input type="text" class="form-control" id="floatingInput" formControlName="username" placeholder="user name">
+                    <label for="floatingInput">User Name</label>
+                    <div *ngIf="
+            formLoginValidate.username.invalid &&
+            (formLoginValidate.username.dirty ||
+              formLoginValidate.username.touched)
+          ">
+                        <small class="text-white" *ngIf="formLoginValidate.username.errors?.required">هذا الحقل مطلوب</small>
+                        <small class="text-white" *ngIf="formLoginValidate.username.errors?.minlength">لا يجب ان يقل هذا الحقل عن 3 حروف</small>
+                    </div>
+                </div>
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="floatingPassword" formControlName="password" placeholder="password">
+                    <label for="floatingPassword">Password</label>
+                    <div *ngIf="
+            formLoginValidate.password.invalid &&
+            (formLoginValidate.password.dirty ||
+              formLoginValidate.password.touched)
+          ">
+                        <small class="text-white" *ngIf="formLoginValidate.password.errors?.required">هذا الحقل مطلوب</small>
+                        <small class="text-white" *ngIf="formLoginValidate.password.errors?.minlength">لا يجب ان يقل هذا الحقل عن 3 حروف</small>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-outline-light my-4" [disabled]="formLogin.invalid" (click)="login()"><i
+                  class="fas fa-sign-in-alt me-2"></i>تسجيل الدخول</button>
+            </form>
+        </div>
+    </div>
+</div>
